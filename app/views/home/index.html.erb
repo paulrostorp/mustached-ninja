@@ -1,0 +1,48 @@
+<%= form_for(Tip.new) do |f| %>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tag %><br />
+    <%= f.text_field :tag %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.text_field :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %> 
+<h1>Listing tips</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Body</th>
+    <th>Tag</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tips.each do |tip| %>
+  <tr>
+    <td><%= tip.id %></td>
+    <td><%= tip.body %></td>
+    <td><%= tip.tag %></td>
+    <td><%= tip.date %></td>
+    <td><%= link_to 'Show', tip %></td>
+    <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
+    <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tip', new_tip_path %>
+<input type="button" value="Click me" class="btn primary">
