@@ -4,7 +4,6 @@ class CreateTips < ActiveRecord::Migration
       t.text :body
       t.string :tag
       t.string :date
-
       t.timestamps
     end
   end

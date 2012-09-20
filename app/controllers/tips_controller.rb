@@ -1,6 +1,9 @@
 class TipsController < ApplicationController
   # GET /tips
   # GET /tips.json
+  before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create, :new]
+  before_filter :is_owner, :only => [:edit, :update, :destory]
+
   def index
     @tips = Tip.all
 
@@ -25,6 +28,7 @@ class TipsController < ApplicationController
   # GET /tips/new.json
   def new
     @tip = Tip.new
+    @tip.user = current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +45,7 @@ class TipsController < ApplicationController
   # POST /tips.json
   def create
     @tip = Tip.new(params[:tip])
+    @tip.user = current_user
 
     respond_to do |format|
       if @tip.save
@@ -78,6 +83,15 @@ class TipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tips_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def is_owner 
+    tip = Tip.find(params[:id])
+      unless  current_user.has_role? :admin  
+      unless user_signed_in? && tip.user == current_user
+         redirect_to(tip, :notice => 'You cannot edit a tip that you did not create.')
+      end
     end
   end
 end

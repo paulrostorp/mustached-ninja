@@ -10,8 +10,8 @@ gem 'less-rails'
 gem 'therubyracer'
 gem 'less-rails-bootstrap'
 gem 'devise'
-gem "omniauth"
-gem "omniauth-twitter"
+gem 'cancan'
+gem 'rolify'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
