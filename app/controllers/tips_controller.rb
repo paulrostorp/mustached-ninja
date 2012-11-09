@@ -46,9 +46,11 @@ class TipsController < ApplicationController
   def create
     @tip = Tip.new(params[:tip])
     @tip.user = current_user
-
+    # @tip.plus = 0
+    # @tip.min  = 0
     respond_to do |format|
       if @tip.save
+
         format.html { redirect_to @tip, notice: 'Tip was successfully created.' }
         format.json { render json: @tip, status: :created, location: @tip }
       else
@@ -57,7 +59,6 @@ class TipsController < ApplicationController
       end
     end
   end
-
   # PUT /tips/1
   # PUT /tips/1.json
   def update

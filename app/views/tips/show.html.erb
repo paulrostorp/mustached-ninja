@@ -31,12 +31,13 @@
 </p>
 
 
-<% if !current_user == @tip.user %>
+<% if current_user == @tip.user %>
 hey
+cuserid:<%= current_user.id %>
+cuser:<%= current_user %>
+tipuser:<%= @tip.user %>
+
 <% end %>
 <%= link_to 'Edit', edit_tip_path(@tip) %> |
 <%= link_to 'Back', tips_path %>
 
-cuserid:<%= current_user.id %>
-cuser:<%= current_user %>
-tipuser:<%= @tip.user %>

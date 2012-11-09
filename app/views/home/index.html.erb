@@ -9,33 +9,27 @@
     <%= f.submit :class => "btn" %>
   </div>
   <% end %> 
-<h1>Listing tips</h1>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Body</th>
-    <th>Tag</th>
-    <th>Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<table class="table table-striped">
+    <th>tip</th>
 <% @tips.each do |tip| %>
 
-  <tr>
-    <td><%= tip.id %></td>
-    <td><%= tip.body %></td>
-    <td><%= tip.tag %></td>
-    <td><%= tip.date %></td>
-    <td><%= link_to 'Show', tip %></td>
-    <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
-    <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-  user :<%= tip.user %>
+    <tr>
+<td><%= tip.body %>
+    <%= tip.date  %>
+    <%= link_to 'Show', tip %>
+<% if current_user == tip.user %>
+   <%= link_to edit_tip_path(tip) do %>
+   <i class="icon-pencil"></i><%end%>
+    <%= link_to tip, method: :delete, data: { confirm: 'Are you sure?' } do %>
+       <i class="icon-remove"></i> 
+<%end%>
+
+
+</td></tr>
+<%end %>
 <% end %>
-</table>
+  </table>
 
 <br />
 
